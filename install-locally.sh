@@ -7,6 +7,12 @@ if [[ "$EUID" -ne 0 ]]; then
   exit 1
 fi
 
+read -p "This script will install several packages on your machine, do you want to proceed? [y/N]" choice
+case "$choice" in
+  y|Y ) echo "Setting up host...";;
+  * ) echo "script cancelled, exiting now"; exit 0;;
+esac
+
 
 ## Install ansible and git
 apt update
