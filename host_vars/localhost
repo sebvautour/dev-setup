@@ -1,6 +1,11 @@
+# User variables
 dev_user_username: "svautour"
 dev_user_name: "Seb Vautour"
 dev_user_email: "sebastien.vautour@gmail.com"
 dev_user_github_user: "sebvautour"
 dev_user_group: "sudo"
 dev_user_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhYKtYw0vIF3v7wlO1NPY/gri3psWDYhFvmMZfpwHGDk41gu+yROOKjwZfrmctWPFjcqNVP3npeT046QuCkass18SY//2GMdVgiVjUDWLMXtckKll59B6tebWibOG+gfN/oyFs00Gze+DIb5UDwvKzWnZnSBiJ65vy0LxITNQaTVHCpdVBoOjykypLgpbxK76BdORRP1IapNYFJ9c5GbfzSjanAxQV7rJ1bSzJMhhriwzERX4iG44/A5xj5YlPycOsrHn9IZTlGCq+BHQHMYaTDsNwGib0Uwk6j5cAvMVk3USPKips3nXUzrxUGIl/SACXIAi+7E2dUS/737p6p77Fw== rsa-key-svautour"
+
+# Packages
+go_tarball_base_url: "https://go.dev/dl"
+go_tarball_file: "go1.17.7.linux-amd64.tar.gz"

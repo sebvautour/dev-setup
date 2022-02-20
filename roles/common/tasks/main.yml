@@ -47,3 +47,17 @@
     src: .gitconfig.j2
     dest: "/home/{{ dev_user_username }}/.gitconfig"
     owner: "{{ dev_user_username }}"
+
+- name: Add entries to $PATH
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:/usr/local/go/bin'
+
+# Install various tools
+- name: Download Go
+  get_url:
+    url: "{{ go_tarball_base_url }}/{{ go_tarball_file }}"
+    dest: /var/tmp
+  notify:
+    - Delete Go
+    - Unarchive Go

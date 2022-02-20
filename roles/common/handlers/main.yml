@@ -3,3 +3,13 @@
   ansible.builtin.service:
     name: sshd
     state: reloaded
+
+- name: Delete Go
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: absent
+
+- name: Unarchive Go
+  ansible.builtin.unarchive:
+    src: "/var/tmp/{{ go_tarball_file }}"
+    dest: /usr/local
