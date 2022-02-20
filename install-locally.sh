@@ -25,8 +25,13 @@ add-apt-repository --yes --update ppa:ansible/ansible
 apt install --yes ansible git
 
 ## Clone repo locally
-git clone https://github.com/sebvautour/dev-setup.git
-cd dev-setup
+if [[ ! -d ./dev-setup ]]; then
+    git clone https://github.com/sebvautour/dev-setup.git
+    cd dev-setup
+else
+    cd dev-setup
+    git pull
+fi
 
 ## Run ansible playbook
 ansible-playbook play.yml

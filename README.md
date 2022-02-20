@@ -4,5 +4,5 @@ Repo containing an ansible playbook to setup my personal development host used f
 ## Installation
 Script to run the ansible playbook:
 ```shell
-wget -q -O - https://raw.githubusercontent.com/sebvautour/dev-setup/main/install-locally.sh | bash
+bash -c "$(wget -q -O - 'https://raw.githubusercontent.com/sebvautour/dev-setup/main/install-locally.sh')"
 ```
