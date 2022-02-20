@@ -9,3 +9,6 @@ dev_user_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhYKtYw0vIF3v7wlO1NPY/g
 # Packages
 go_tarball_base_url: "https://go.dev/dl"
 go_tarball_file: "go1.17.7.linux-amd64.tar.gz"
+
+apt_packages:
+ - build-essential

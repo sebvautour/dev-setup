@@ -61,3 +61,8 @@
   notify:
     - Delete Go
     - Unarchive Go
+
+- name: Install packages
+  apt:
+    name: "{{ apt_packages }}"
+    update_cache: yes
