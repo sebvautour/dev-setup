@@ -1,9 +1,6 @@
 ---
 - name: "Setup dev host"
   hosts: localhost
-  connection: local 
-  tasks:
-  - name: smoke test 
-    file:
-      path: /tmp/smoke-test
-      state: touch
+  connection: local
+  roles:
+  - system

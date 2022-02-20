@@ -1,0 +1,40 @@
+---
+# Development user setup
+- name: "Add {{ dev_user_username }} user"
+  ansible.builtin.user:
+    name: "{{ dev_user_username }}"
+    shell: /bin/bash
+    group: "{{ dev_user_group }}"
+
+- name: "Create /home/{{ dev_user_username }} directories"
+  ansible.builtin.file:
+    path: "/home/{{ dev_user_username }}/{{ item }}"
+    state: directory
+    owner: "{{ dev_user_username }}"
+    mode: '0700'
+  loop: "{{ dev_user_folders }}"
+
+- name: "Copy ssh authorized_keys"
+  ansible.builtin.copy:
+    content: "{{ dev_user_public_key }}"
+    owner: "{{ dev_user_username }}"
+    mode: '0400'
+    dest: "/home/{{ dev_user_username }}/.ssh/authorized_keys"
+
+# SSH and sudo setup
+- name: "Configure sshd"
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: "#PasswordAuthentication .*", line: "PasswordAuthentication no" }
+    - { regexp: "#PermitRootLogin .*", line: "PermitRootLogin no" }
+  notify:
+    - Reload sshd
+
+- name: "Password-less sudo"
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: "%sudo   ALL=(ALL:ALL) ALL"
+    line: "%sudo   ALL=(ALL:ALL) NOPASSWD: ALL"
