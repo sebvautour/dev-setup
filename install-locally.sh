@@ -30,7 +30,7 @@ if [[ ! -d ./dev-setup ]]; then
     cd dev-setup
 else
     cd dev-setup
-    git pull
+    git pull --rebase
 fi
 
 ## Run ansible playbook
