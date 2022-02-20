@@ -12,7 +12,9 @@
     state: directory
     owner: "{{ dev_user_username }}"
     mode: '0700'
-  loop: "{{ dev_user_folders }}"
+  loop:
+    - ".ssh"
+    - "projects"
 
 - name: "Copy ssh authorized_keys"
   ansible.builtin.copy:
@@ -38,3 +40,10 @@
     path: /etc/sudoers
     regexp: "%sudo   ALL=(ALL:ALL) ALL"
     line: "%sudo   ALL=(ALL:ALL) NOPASSWD: ALL"
+
+## User config
+- name: git config
+  ansible.builtin.template:
+    src: .gitconfig.j2
+    dest: "/home/{{ dev_user_username }}/.gitconfig"
+    owner: "{{ dev_user_username }}"
