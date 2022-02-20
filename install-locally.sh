@@ -12,7 +12,7 @@ fi
 apt update
 apt install --yes software-properties-common
 add-apt-repository --yes --update ppa:ansible/ansible
-apt install --yes ansible git-all
+apt install --yes ansible git
 
 ## Clone repo locally
 git clone https://github.com/sebvautour/dev-setup.git
