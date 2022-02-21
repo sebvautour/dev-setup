@@ -51,7 +51,10 @@
 - name: Add entries to $PATH
   copy:
     dest: /etc/profile.d/custom-path.sh
-    content: 'PATH=$PATH:/usr/local/go/bin'
+    content: "PATH=$PATH:/usr/local/go/bin:/usr/local/lib/nodejs/node-{{ node_version }}-{{ node_distro }}/bin"
+  tags:
+    - go
+    - node
 
 # Install various tools
 - name: Download Go
@@ -61,8 +64,28 @@
   notify:
     - Delete Go
     - Unarchive Go
+  tags:
+    - go
+
+- name: "/usr/local/lib/nodejs directory"
+  ansible.builtin.file:
+    path: "/usr/local/lib/nodejs"
+    state: directory
+    mode: '0755'
+  tags:
+    - node
+
+- name: Download Node
+  ansible.builtin.unarchive:
+    src: "{{ node_tarball_base_url }}/{{ node_version }}/node-{{ node_version }}-{{ node_distro }}.tar.xz"
+    remote_src: yes
+    dest: /usr/local/lib/nodejs
+  tags:
+    - node
 
 - name: Install packages
   apt:
     name: "{{ apt_packages }}"
     update_cache: yes
+  tags:
+    - apt
